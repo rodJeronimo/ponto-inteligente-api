@@ -19,6 +19,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "empresa")
 public class Empresa implements Serializable {
+	
 	private static final long serialVersionUID = 396043664936566213L;
 
 	private Long id;
@@ -29,11 +30,10 @@ public class Empresa implements Serializable {
 	private List<Funcionario> funcionarios;
 
 	public Empresa() {
-
 	}
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	public Long getId() {
 		return id;
 	}

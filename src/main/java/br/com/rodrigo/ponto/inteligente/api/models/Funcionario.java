@@ -1,6 +1,5 @@
 package br.com.rodrigo.ponto.inteligente.api.models;
 
-import java.beans.Transient;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -21,6 +20,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
 
 import br.com.rodrigo.ponto.inteligente.api.enums.PerfilEnum;
 
@@ -28,7 +29,7 @@ import br.com.rodrigo.ponto.inteligente.api.enums.PerfilEnum;
 @Table(name = "funcionario")
 public class Funcionario implements Serializable {
 
-	public static final long serialVersionUID = -5754246207015712518L;
+	private static final long serialVersionUID = -5754246207015712518L;
 
 	private Long id;
 	private String nome;
@@ -48,7 +49,7 @@ public class Funcionario implements Serializable {
 	}
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	public Long getId() {
 		return id;
 	}
@@ -75,15 +76,6 @@ public class Funcionario implements Serializable {
 		this.email = email;
 	}
 
-	@Column(name = "senha", nullable = false)
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-
 	@Column(name = "cpf", nullable = false)
 	public String getCpf() {
 		return cpf;
@@ -93,7 +85,7 @@ public class Funcionario implements Serializable {
 		this.cpf = cpf;
 	}
 
-	@Column(name = "valor_hora", nullable = false)
+	@Column(name = "valor_hora", nullable = true)
 	public BigDecimal getValorHora() {
 		return valorHora;
 	}
@@ -107,7 +99,7 @@ public class Funcionario implements Serializable {
 		this.valorHora = valorHora;
 	}
 
-	@Column(name = "qtd_horas_trabalho_dia", nullable = false)
+	@Column(name = "qtd_horas_trabalho_dia", nullable = true)
 	public Float getQtdHorasTrabalhoDia() {
 		return qtdHorasTrabalhoDia;
 	}
@@ -121,7 +113,7 @@ public class Funcionario implements Serializable {
 		this.qtdHorasTrabalhoDia = qtdHorasTrabalhoDia;
 	}
 
-	@Column(name = "qtdHorasAlmoco", nullable = false)
+	@Column(name = "qtd_horas_almoco", nullable = true)
 	public Float getQtdHorasAlmoco() {
 		return qtdHorasAlmoco;
 	}
@@ -162,7 +154,16 @@ public class Funcionario implements Serializable {
 	public void setDataAtualizacao(Date dataAtualizacao) {
 		this.dataAtualizacao = dataAtualizacao;
 	}
+	
+	@Column(name = "senha", nullable = false)
+	public String getSenha() {
+		return senha;
+	}
 
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+	
 	@ManyToOne(fetch = FetchType.EAGER)
 	public Empresa getEmpresa() {
 		return empresa;
