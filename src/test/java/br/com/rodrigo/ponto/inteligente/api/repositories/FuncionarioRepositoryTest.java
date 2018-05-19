@@ -26,5 +26,6 @@ public class FuncionarioRepositoryTest {
 	@Before
 	public void setUp() {
 		Empresa empresa = new Empresa();
+		
 	}
 }
